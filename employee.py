@@ -9,7 +9,6 @@ class Employee:
     def get_pay(self):
         if self.commission:
             self.pay += self.commission
-            self.commission = 0
         return self.pay
 
     def __str__(self):
