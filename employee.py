@@ -28,7 +28,6 @@ class Wage(Employee):
         self.pay = hours*rate
 
     def __str__(self):
-        self.totalPay = self.get_pay()
         line = f"{self.name} works on a contract of {self.hours} hours at {self.rate}/hour"
         if self.commission:
             if self.contracts == 1:
@@ -36,6 +35,7 @@ class Wage(Employee):
             else:
                 line += f" and recieves a commission for {self.contracts} contract(s) at {self.perContract}/contract"
         
+        self.totalPay = self.get_pay()
         line += f". Their total pay is {self.totalPay}."
         print(line)
         return line
@@ -49,7 +49,7 @@ class Salaried(Employee):
     def __str__(self):
         self.totalPay = self.get_pay()
         line = f"{self.name} works on a monthly salary of {self.salary}"
-        if self.commission:
+        if self.commission != 0:
             if self.contracts == 1:
                 line += f" and recieves bonus commission of {self.commission}"
             else:
@@ -81,16 +81,11 @@ robbie.addCommission(1,1500)
 ariel = Wage('Ariel', 120, 30)
 ariel.addCommission(1,600)
 
-print(billie.get_pay())
-print(charlie.get_pay())
-print(renee.get_pay())
-print(jan.get_pay())
-print(robbie.get_pay())
-print(ariel.get_pay())
 
-str(billie)
+
+"""str(billie)
 str(charlie)
 str(renee)
 str(jan)
 str(robbie)
-str(ariel)
+str(ariel)"""
