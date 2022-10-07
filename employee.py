@@ -32,7 +32,7 @@ class Wage(Employee):
         line = f"{self.name} works on a contract of {self.hours} hours at {self.rate}/hour"
         if self.commission != 0:
             if self.contracts == 1:
-                line += f" and receives bonus commission of {self.commission}"
+                line += f" and receives a bonus commission of {self.commission}"
             else:
                 line += f" and receives a commission for {self.contracts} contract(s) at {self.perContract}/contract"
         
@@ -51,7 +51,7 @@ class Salaried(Employee):
         line = f"{self.name} works on a monthly salary of {self.salary}"
         if self.commission != 0:
             if self.contracts == 1:
-                line += f" and receives bonus commission of {self.commission}"
+                line += f" and receives a bonus commission of {self.commission}"
             else:
                 line += f" and receives a commission for {self.contracts} contract(s) at {self.perContract}/contract"
         
