@@ -9,6 +9,7 @@ class Employee:
     def get_pay(self):
         if self.commission:
             self.pay += self.commission
+            self.commission = 0
         return self.pay
 
     def __str__(self):
@@ -22,10 +23,15 @@ class Wage(Employee):
         self.pay = hours*rate
 
     def __str__(self):
-        print(f"{self.name} is on contract for {self.hours} hours at a wage of £{self.rate} per hour.")
+        line1 = (f"{self.name} is on contract for {self.hours} hours at a wage of £{self.rate} per hour.")
+        lineX = ""
         if self.commission:
-            print(f"Additionally, they have earned a commision of £{self.commission}.")
-        print(f"In total, their pay is {self.get_pay()}")
+            lineX = (f"Additionally, they have earned a commision of £{self.commission}.")
+        line2 = (f"In total, their pay is {self.get_pay()}")
+
+        line = line1 + lineX + line2
+        print(line)
+        return line
 
 class Salaried(Employee):
     def __init__(self, name, salary):
@@ -34,13 +40,15 @@ class Salaried(Employee):
         self.pay = salary
     
     def __str__(self):
-        print(f"{self.name} is on contract at a salary of £{self.salary} per month.")
+        line1 = (f"{self.name} is on contract at a salary of £{self.salary} per month.")
         if self.commission:
-            print(f"Additionally, they have earned a commision of £{self.commission}.")
-            print(f"In total, their pay is {self.get_pay()}")
+            line2 = (f"Additionally, they have earned a commision of £{self.commission}. In total, their pay is {self.get_pay()}")
         else:
-            print(f"This is equal to their total pay.")
+            line2 = (f"This is equal to their total pay.")
         
+        line = line1 + line2
+        print(line)
+        return line
 
 # Billie works on a monthly salary of 4000.  Their total pay is 4000.
 billie = Salaried('Billie', 4000)
@@ -58,6 +66,7 @@ jan.commission = 3*220
 
 # Robbie works on a monthly salary of 2000 and receives a bonus commission of 1500.  Their total pay is 3500.
 robbie = Salaried('Robbie',2000)
+robbie.commission = 1500
 
 # Ariel works on a contract of 120 hours at 30/hour and receives a bonus commission of 600.  Their total pay is 4200.
 ariel = Wage('Ariel', 120, 30)
@@ -67,4 +76,5 @@ billie.__str__()
 charlie.__str__()
 renee.__str__()
 jan.__str__()
+robbie.__str__()
 ariel.__str__()
