@@ -5,10 +5,12 @@ class Employee:
     def __init__(self, name, pay = None, commission = 0):
         self.name = name
         self.commission = commission
+        self.commissionCalculated = False
 
     def get_pay(self):
-        if self.commission:
+        if self.commission and not self.commissionCalculated:
             self.pay += self.commission
+            self.commissionCalculated = True
         return self.pay
 
     def __str__(self):
@@ -30,9 +32,9 @@ class Wage(Employee):
         line = f"{self.name} works on a contract of {self.hours} hours at {self.rate}/hour"
         if self.commission != 0:
             if self.contracts == 1:
-                line += f" and recieves bonus commission of {self.commission}"
+                line += f" and receives bonus commission of {self.commission}"
             else:
-                line += f" and recieves a commission for {self.contracts} contract(s) at {self.perContract}/contract"
+                line += f" and receives a commission for {self.contracts} contract(s) at {self.perContract}/contract"
         
         self.totalPay = self.get_pay()
         line += f". Their total pay is {self.totalPay}."
@@ -49,9 +51,9 @@ class Salaried(Employee):
         line = f"{self.name} works on a monthly salary of {self.salary}"
         if self.commission != 0:
             if self.contracts == 1:
-                line += f" and recieves bonus commission of {self.commission}"
+                line += f" and receives bonus commission of {self.commission}"
             else:
-                line += f" and recieves a commission for {self.contracts} contract(s) at {self.perContract}/contract"
+                line += f" and receives a commission for {self.contracts} contract(s) at {self.perContract}/contract"
         
         
         self.totalPay = self.get_pay()
